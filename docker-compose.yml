@@ -1,4 +1,9 @@
 version: '3.7'
+
+networks:
+  fibApp:
+    driver: bridge
+
 services:
   postgres:
     image: postgres:10.5
@@ -14,11 +19,20 @@ services:
       - '5432:5432'
     volumes:
       - ./postgres-data:/var/lib/postgresql/data
+    networks:
+      - fibApp
+  
   fibApi:
     image: fibapi:latest
     depends_on:
       - "postgres"
+    environment:
+      - DB_HOST=postgres
+      - DB_USER=postgres
+      - DB_PASS=postgres
     build: ./src
     ports:
       - "5000:5000"
+    networks:
+      - fibApp
     

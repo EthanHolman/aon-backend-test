@@ -1,11 +1,15 @@
 import psycopg2
 from psycopg2.extensions import ISOLATION_LEVEL_AUTOCOMMIT
+import os
 
 DB_NAME = "fib"
 DB_TABLE = "fibdata"
+DB_HOST = os.getenv('DB_HOST')
+DB_USER = os.getenv('DB_USER')
+DB_PASS = os.getenv('DB_PASS')
 
 # todo: parameterize this crap
-connectionStringNoDb = "host='localhost' user='postgres' password='postgres'"
+connectionStringNoDb = f"host={DB_HOST} user={DB_USER} password={DB_PASS}"
 connectionString = f"{connectionStringNoDb} dbname={DB_NAME}"
 
 

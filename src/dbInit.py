@@ -1,16 +1,7 @@
 import psycopg2
 from psycopg2.extensions import ISOLATION_LEVEL_AUTOCOMMIT
-import os
-
-DB_NAME = "fib"
-DB_TABLE = "fibdata"
-DB_HOST = os.getenv('DB_HOST')
-DB_USER = os.getenv('DB_USER')
-DB_PASS = os.getenv('DB_PASS')
-
-# todo: parameterize this crap
-connectionStringNoDb = f"host={DB_HOST} user={DB_USER} password={DB_PASS}"
-connectionString = f"{connectionStringNoDb} dbname={DB_NAME}"
+# from dbUtils import DB_NAME
+from vars import DB_NAME, DB_TABLE, connectionStringNoDb, connectionString
 
 
 def initDb():
@@ -47,7 +38,7 @@ def createSchema():
         cursor = con.cursor()
 
         cursor.execute(
-            f"create table {DB_TABLE} (n_terms int, sequence varchar(500), time_submitted date);")
+            f"create table if not exists {DB_TABLE} (n_terms int, sequence varchar(500), time_submitted date);")
 
         cursor.close()
         con.close()

@@ -1,21 +1,19 @@
 from datetime import datetime
 import calendar
 import json
-from dbFibannoci import getFibRecord, putFibRecord, getQueryDatesByMonthYear
+from dbFibannoci import putFibRecord, getQueryDatesByMonthYear
 
 
-def getFibSequence(fibCount) -> str:
-    record = getFibRecord(fibCount)
+def getFibSequence(fibCount: int) -> str:
+    sequence = ""
 
-    if (record != None):
-        return record[0]
+    if fibCount > 0:
+        fobs = [str(item) for item in findNFibs(fibCount)]
+        sequence = "-".join(fobs)
 
-    fobs = [str(item) for item in findNFibs(fibCount)]
-    sequence = "-".join(fobs)
+        now = datetime.today().strftime('%Y-%m-%d')
 
-    now = datetime.today().strftime('%Y-%m-%d')
-
-    putFibRecord(fibCount, sequence, now)
+        putFibRecord(str(fibCount), sequence, now)
 
     return sequence
 

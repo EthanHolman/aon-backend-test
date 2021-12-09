@@ -39,7 +39,7 @@ def createSchema():
         cursor = con.cursor()
 
         cursor.execute(
-            f"create table if not exists {DB_TABLE} (n_terms int primary key, sequence varchar(10000) not null, time_submitted date not null);")
+            f"create table if not exists {DB_TABLE} (n_terms int not null, sequence varchar(10000) not null, time_submitted date not null);")
 
         cursor.close()
         con.close()

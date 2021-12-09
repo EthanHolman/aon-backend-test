@@ -5,24 +5,6 @@ from psycopg2.extensions import ISOLATION_LEVEL_AUTOCOMMIT
 from vars import connectionString, DB_TABLE
 
 
-def getFibRecord(num: int) -> str:
-    try:
-        con = psycopg2.connect(connectionString)
-        con.set_isolation_level(ISOLATION_LEVEL_AUTOCOMMIT)
-        cursor = con.cursor()
-
-        cursor.execute(
-            f"select sequence from {DB_TABLE} where n_terms = %s;", [num])
-        sequence = cursor.fetchone()
-
-        cursor.close()
-        con.close()
-
-        return sequence
-    except:
-        print("Error retreiving fib record for " + num)
-
-
 def putFibRecord(n_terms, sequence, time_submitted):
     try:
         con = psycopg2.connect(connectionString)
@@ -49,9 +31,6 @@ def getQueryDatesByMonthYear(year: int, month: int):
 
         startDate = datetime.datetime(year, month, 1)
         endDate = datetime.datetime(year, month, daysInMonth)
-
-        print(startDate)
-        print(endDate)
 
         cursor.execute(
             f"select time_submitted from {DB_TABLE} where time_submitted >= %s and time_submitted  <= %s order by time_submitted asc;", (startDate, endDate))

@@ -20,7 +20,7 @@ def apiGetFibSequence(count):
     if match == None:
         return Response("Bad request. Example: /fibonacci/12", status=400)
 
-    sequence = getFibSequence(count)
+    sequence = getFibSequence(int(count))
     return Response(sequence, mimetype='text/plain')
 
 

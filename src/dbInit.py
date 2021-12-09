@@ -1,6 +1,5 @@
 import psycopg2
 from psycopg2.extensions import ISOLATION_LEVEL_AUTOCOMMIT
-# from dbUtils import DB_NAME
 from vars import DB_NAME, DB_TABLE, connectionStringNoDb, connectionString
 
 

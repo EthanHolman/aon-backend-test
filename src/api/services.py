@@ -1,12 +1,12 @@
 from datetime import datetime
 import calendar
 import json
-from fibanocci import findNFibs
 from dbFibannoci import getFibRecord, putFibRecord, getQueryDatesByMonthYear
 
 
 def getFibSequence(fibCount) -> str:
     record = getFibRecord(fibCount)
+
     if (record != None):
         return record[0]
 
@@ -38,7 +38,6 @@ def calcWeekTotals(year: int, month: int, dates):
 
     weeklyTotals = [0] * weeksInMonth
 
-    # yeah i know... this could be improved...
     for row in range(weeksInMonth):
         for date in dates:
             dayInMonth = int(date.strftime("%d"))
@@ -46,3 +45,13 @@ def calcWeekTotals(year: int, month: int, dates):
                 weeklyTotals[row] += 1
 
     return weeklyTotals
+
+def findNFibs(fibCount):
+    result = []
+    a, b = 0, 1
+
+    while len(result) < fibCount:
+        result.append(a)
+        a, b = b, a + b
+
+    return result

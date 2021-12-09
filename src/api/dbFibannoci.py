@@ -1,8 +1,8 @@
+import datetime
+import calendar
 import psycopg2
 from psycopg2.extensions import ISOLATION_LEVEL_AUTOCOMMIT
 from vars import connectionString, DB_TABLE
-import datetime
-import calendar
 
 
 def getFibRecord(num: int) -> str:

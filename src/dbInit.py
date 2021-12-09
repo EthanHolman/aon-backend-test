@@ -1,3 +1,4 @@
+import sys
 import psycopg2
 from psycopg2.extensions import ISOLATION_LEVEL_AUTOCOMMIT
 from vars import DB_NAME, DB_TABLE, connectionStringNoDb, connectionString
@@ -25,8 +26,9 @@ def createDbIfNotExists():
         cursor.close()
         con.close()
     except Exception as e:
-        print("Error while checking if DB exists")
+        print("[Error] while checking if DB exists. Exiting..")
         print(e)
+        sys.exit(1)
 
 
 def createSchema():
@@ -42,5 +44,6 @@ def createSchema():
         cursor.close()
         con.close()
     except Exception as e:
-        print("Error when trying to create schema")
+        print("[Error] when trying to create schema. Exiting..")
         print(e)
+        sys.exit(1)

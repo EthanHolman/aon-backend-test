@@ -13,9 +13,9 @@ def apiRoot():
     return Response("Fibonacci Sequence API", mimetype='text/plain')
 
 
-@api.route("/fibonacci/<int:count>")
+@api.route("/fibonacci/<count>")
 def apiGetFibSequence(count):
-    match = re.search("^[\d]+$")
+    match = re.search("^[\d]+$", count)
 
     if match == None:
         return Response("Bad request. Example: /fibonacci/12", status=400)

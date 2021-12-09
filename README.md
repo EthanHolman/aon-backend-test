@@ -33,6 +33,14 @@ Tests are located in the api project. Execute them by running `python3 -m unitte
 
 The main application logic has test coverage. 
 
+### Environment Variables
+
+When running/developing the API outside of docker, the following environment variables are expected:
+
+- DB_HOST (hostname of Postgres instance)
+- DB_USER
+- DB_PASS
+
 # CLI
 
 A simple CLI tool exists in `/src/cli` that allows making requests against the API.

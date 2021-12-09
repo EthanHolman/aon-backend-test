@@ -1,7 +1,8 @@
 import re
 from flask import Flask, Response
-from services import getFibSequence, getRequestSummary
-from dbInit import initDb
+from services.fib import getFibSequence
+from services.requestSummary import getRequestSummary
+from persistence.dbInit import initDb
 
 # app startup
 initDb()

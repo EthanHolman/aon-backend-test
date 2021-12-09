@@ -37,7 +37,7 @@ services:
       - DB_HOST=postgres
       - DB_USER=postgres
       - DB_PASS=postgres
-    build: ./src
+    build: ./src/api
     ports:
       - "5000:5000"
     networks:

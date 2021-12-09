@@ -41,6 +41,3 @@ class TestRequestSummaryService(unittest.TestCase):
         result = calcWeekTotals(2021, 11, dates)
         expectedResult = [1, 0, 2, 0, 0]
         self.assertListEqual(result, expectedResult)
-
-if __name__ == '__main__':
-    unittest.main()

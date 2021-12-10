@@ -17,6 +17,7 @@ def getRequestSummary(year: int, month: int):
 
 
 def calcWeekTotals(year: int, month: int, dates):
+    calendar.setfirstweekday(calendar.SUNDAY)
     cal = calendar.monthcalendar(year, month)
     weeksInMonth = len(cal)
 
@@ -36,8 +37,9 @@ def calcWeekTotals(year: int, month: int, dates):
 def filterDatesToYearMonth(year: int, month: int, dates):
     filtered = []
 
-    for date in dates:
-        if date.strftime("%Y") == str(year) and date.strftime("%m") == str(month):
-            filtered.append(date)
+    if dates != None:
+        for date in dates:
+            if date.strftime("%Y") == str(year) and date.strftime("%m") == str(month):
+                filtered.append(date)
 
     return filtered
